@@ -113,6 +113,7 @@ h1, h2, h3, h4, h5 {
     margin-left: 20px;
     margin-right: 20px;
     margin-top: 40px;
+    visibility: collapse;
 }
 
 #modal {
@@ -202,9 +203,21 @@ h1, h2, h3, h4, h5 {
     display: initial;
 }
 
+@keyframes pan {
+    0% {
+        transform: translateX(-10%);
+    }
+    100% {
+        transform: translate(10%);
+    }
+}
+
 #wakeUpVideo {
     min-height: 100%;
     display: none;
+    animation: pan 31s ease-out;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
 }
 
 #videoDiv {

@@ -39,14 +39,16 @@
 
         console.log('playing alarm: ' + alarm.name);
         document.getElementById('wakeUpVideo').style.display = 'initial';
-        document.getElementById('stop-alarm').style.display = 'initial';
+        document.getElementById('stop-alarm').style.visibility = 'initial';
         wakeUpVideo.play();
+        wakeUpSound.play();
     };
 
     DOMUpdator.prototype.stopAlarm = function() {
         document.getElementById('wakeUpVideo').style.display = 'none';
-        document.getElementById('stop-alarm').style.display = 'none';
-        wakeUpVideo.stop();
+        document.getElementById('stop-alarm').style.visibility = 'collapse';
+        wakeUpVideo.pause();
+        wakeUpSound.pause();
     }
 
     DOMUpdator.prototype.showAlarms = function (alarms) {
