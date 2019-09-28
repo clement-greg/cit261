@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script type="text/javascript">
+
+        (function () {
+            var data = null;
+
+            var xhr = new XMLHttpRequest();
+            // xhr.withCredentials = true;
+
+            xhr.addEventListener("readystatechange", function () {
+                if (this.readyState === this.DONE) {
+                    var responseText = this.responseText.replace('test(', '');
+                    responseText = responseText.substring(0,responseText.length - 1);
+                    console.log(JSON.parse(responseText));
+
+                }
+            });
+
+            xhr.open("GET", "https://community-open-weather-map.p.rapidapi.com/weather?callback=test&id=2172797&units=%22metric%22%20or%20%22imperial%22&mode=xml%2C%20html&q=phoenix");
+            xhr.setRequestHeader("x-rapidapi-host", "community-open-weather-map.p.rapidapi.com");
+            xhr.setRequestHeader("x-rapidapi-key", "0c4519d17emsh51ff51603e95781p1b9a22jsn784af1a26a28");
+
+            xhr.send(data);
+        })();
+    </script>
+</body>
+
+</html>

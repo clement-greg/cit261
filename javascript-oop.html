@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JavaScript Objects</title>
+</head>
+
+<body>
+
+
+    <button id="start-stop">Start</button><br>
+    <canvas id="canvas" height="300" width="300" style="height: 300px; width: 300px; background-color: rgba(0,0,0,.03)"></canvas>
+
+    <script type="text/javascript">
+
+        (function () {
+            var canvas = document.getElementById('canvas');
+            var context = canvas.getContext('2d');
+
+            function Animal(numberOfLegs, speedX, speedY, x, y) {
+                this.numberOfLegs = numberOfLegs;
+                this.speedX = speedX;
+                this.speedY = speedY;
+                this.x = x;
+                this.y = y;
+                this.fillStyle = 'green';
+                console.log('animal constructor files');
+                console.log(this);
+            }
+
+            Animal.prototype.walk = function () {
+                this.x += this.speedX;
+                this.y += this.speedY;
+            }
+
+            Animal.prototype.render = function () {
+                size = 20;
+                context.fillStyle = this.fillStyle;
+                context.beginPath();
+                context.moveTo(this.x + size * Math.cos(0), this.y + size * Math.sin(0));
+
+                for (var i = 1; i <= this.numberOfLegs; i += 1) {
+                    context.lineTo(this.x + size * Math.cos(i * 2 * Math.PI / this.numberOfLegs), this.y + size * Math.sin(i * 2 * Math.PI / this.numberOfLegs));
+                }
+
+                context.strokeStyle = "#000000";
+                context.lineWidth = 1;
+                context.stroke();
+                context.fill();
+            }
+
+            function Dog(x, y) {
+                Animal.call(this, 4, 5, 0, x, y);
+            }
+            Dog.prototype = Object.create(Animal.prototype);
+
+            function Spider(x, y) {
+                Animal.call(this, 8, 3, 0, x, y);
+                this.fillStyle = 'red';
+            }
+            Spider.prototype = Object.create(Animal.prototype);
+
+            var myDog = new Dog(30, 30);
+            var mySpider = new Spider(30, 120);
+
+            myDog.render();
+            mySpider.render();
+
+            var interval;
+            function start() {
+
+                interval = setInterval(function () {
+                    context.clearRect(0, 0, canvas.width, canvas.height);
+                    myDog.walk();
+                    mySpider.walk();
+                    myDog.render();
+                    mySpider.render();
+                }, 500);
+            }
+
+            function stop() {
+                clearInterval(interval);
+            }
+
+            document.getElementById('start-stop').addEventListener('click', function () {
+                if (interval) {
+                    stop();
+                    document.getElementById('start-stop').innerText = 'Start';
+                    myDog.x = 30;
+                    mySpider.x = 30;
+                    context.clearRect(0, 0, canvas.width, canvas.height);
+                    myDog.render();
+                    mySpider.render();
+
+                } else {
+                    start();
+                    document.getElementById('start-stop').innerText = 'Stop';
+                }
+            });
+        })();
+    </script>
+</body>
+
+</html>

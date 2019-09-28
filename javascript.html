@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JavaScript Basics</title>
+</head>
+
+<body>
+
+    <label>
+        <input type="checkbox" id="use-associative-array"> Use Associative Array
+    </label><br>
+    <button id="start-button">Add Items To List</button>
+
+    <ul id="list-items"></ul>
+
+
+    <script type="text/javascript">
+
+        // Don't pollute the global namespace
+        (function () {
+
+            var allItems = [];
+            allItemsAssociative = {};
+            useAssociativeArray = true;
+
+            function setupHandlers() {
+                document.getElementById('start-button').addEventListener('click', addToList);
+
+                var checkbox = document.getElementById('use-associative-array');
+                checkbox.checked = useAssociativeArray;
+                checkbox.addEventListener('click', function () {
+                    useAssociativeArray = checkbox.checked;
+                    outputListItems();
+                });
+            }
+
+            function addToList() {
+
+                var listItem = prompt('Add item to the list');
+                // evaluate if the listItem variable is truthy, end the loop if it is not
+                while (listItem) {
+                    if (useAssociativeArray) {
+                        let recordCount = Object.keys(allItemsAssociative).length;
+
+                        // Store the values in an associative array
+                        allItemsAssociative[recordCount + 1] = listItem;
+                    } else {
+                        // Store the values in a traditional array
+                        allItems.push(listItem);
+                    }
+                    outputListItems();
+                    listItem = prompt('Add item to the list');
+                }
+            }
+
+            function outputListItems() {
+                var list = document.getElementById('list-items');
+                while (list.firstChild) {
+                    list.removeChild(list.firstChild);
+                }
+                if (useAssociativeArray) {
+
+                    // Iterate over the keys in the associative array adding them to the UL
+                    for (var key of Object.keys(allItemsAssociative)) {
+                        addValueToUL(allItemsAssociative[key]);
+                    }
+                } else {
+                    // Iterate of the array members adding them to the UL
+                    // A couple of ways the array could be iterated over, 
+                    // for (var listItem of allItems) {
+
+                    //     addValueToUL(listItem);
+                    // }
+                    for (var i = 0; i < allItems.length; i++) {
+                        addValueToUL(allItems[i]);
+                    }
+                }
+            }
+
+            function addValueToUL(valueToAdd) {
+                var list = document.getElementById('list-items');
+                var newListItem = document.createElement('li');
+                newListItem.innerText = valueToAdd;
+                list.appendChild(newListItem);
+            }
+
+            setupHandlers();
+        })();
+    </script>
+</body>
+
+</html>
