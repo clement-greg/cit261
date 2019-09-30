@@ -53,7 +53,7 @@ input[type=text]:focus, input[type=number]:focus {
     text-align: center;
     margin-top: 100px;
     margin-bottom: 60px;
-    background-color: rgba(0,0,0,.1);
+    background-color: rgba(0, 0, 0, .1);
     width: calc(100% - 50px);
     border-radius: 0 20px 20px 0;
     padding-top: 10px;
@@ -78,23 +78,52 @@ input[type=text]:focus, input[type=number]:focus {
 }
 
 .button {
-    background: linear-gradient(to bottom, #C973FF, #AeBAF8 100%);
+    background: linear-gradient(to bottom, #f0f3f7, #e1e6ed 100%);
     border-radius: 28px;
-    border: 1px solid #aa63d6;
+    border: 1px solid #d8e1ed;
     display: inline-block;
     cursor: pointer;
-    color: #fff;
+    color: #8ea3bf;
     font-family: Arial;
-    font-size: 24px;
+    font-size: 19px;
     padding: 16px 31px;
     text-decoration: none;
-    text-shadow: 0px 1px 0px #aa63d6;
     text-transform: uppercase;
     transition: background .5s;
 }
 
+.button:focus {
+    outline: none;
+}
+
 .button:hover {
-    background: linear-gradient(to bottom, #AeBAF8 5%, #C973FF 100%);
+    background: linear-gradient(to bottom, #e1e6ed, #f0f3f7 100%);
+    ;
+}
+
+input[type=checkbox].css-checkbox {
+    position: absolute;
+    z-index: -1000;
+    left: -1000px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+}
+
+input[type=checkbox].css-checkbox+label.css-label {
+    padding-left: 29px;
+    height: 24px;
+    display: inline-block;
+    line-height: 24px;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    font-size: 24px;
+    vertical-align: middle;
+    cursor: pointer;
 }
 
 @keyframes pulsate {
@@ -120,6 +149,8 @@ input[type=text]:focus, input[type=number]:focus {
     text-transform: uppercase;
     color: rgba(0, 0, 0, .7);
     font-size: 17px;
+    min-height: 52px;
+    min-width: 52px;
 }
 
 .plain-button i.material-icons, button i.material-icons {
@@ -185,7 +216,7 @@ input[type=text]:focus, input[type=number]:focus {
     opacity: 1;
     top: 33px;
     transform: scale(1) translateX(-50%);
-} 
+}
 
 .day {
     background-color: #787878;
@@ -357,7 +388,7 @@ input[type=text]:focus, input[type=number]:focus {
 }
 
 #videoMessage {
-    text-shadow: 2px 2px 4px rgba(0,0,0,.4);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, .4);
     color: white;
     z-index: 1;
 }
