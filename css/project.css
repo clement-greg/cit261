@@ -172,7 +172,7 @@ input[type=text]:focus, input[type=number]:focus {
     transform: scale(.26) translateX(-50%);
     transform-origin: 0%;
     z-index: 2;
-    max-height: calc(100% - 250px);
+    max-height: calc(100vh - 50px);
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -183,7 +183,7 @@ input[type=text]:focus, input[type=number]:focus {
 
 #modal.show {
     opacity: 1;
-    top: 102px;
+    top: 33px;
     transform: scale(1) translateX(-50%);
 }
 
