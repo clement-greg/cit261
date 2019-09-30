@@ -20,128 +20,156 @@
                 <video autoplay="true" id="wakeUpVideo" muted="muted" data-alt="Stock Video Clip Stock Footage Video"
                     loop="true" src="resources/videos/wake-up-video.mp4"></video>
                 <div id="videoMessage">
+                    <div>
+                        <!-- <video id="wake-up-video" autoplay="true" loop="true" src="resources/videos/wake-up-video.mp4"></video> -->
+                        <div id="time"></div>
+
+                        <div id="analog-clock-container">
+                            <svg id="analog-clock" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 305 305">
+                                <defs>
+                                    <style>
+                                        .cls-1 {
+                                            fill: #666;
+                                        }
+
+                                        .cls-2 {
+                                            font-size: 36px;
+                                            fill: #fff;
+                                            font-family: 'Open Sans';
+                                        }
+
+                                        .cls-3 {
+                                            fill: #b3b3b3;
+                                        }
+
+                                        .cls-4 {
+                                            fill: #b3b3de;
+                                        }
+
+                                        .cls-5 {
+                                            fill: none;
+                                            stroke: #fff;
+                                            stroke-miterlimit: 10;
+                                            stroke-width: 2px;
+                                        }
+                                    </style>
+                                </defs>
+                                <title>analog-clock</title>
+                                <g>
+                                    <circle class="cls-1" cx="152.5" cy="152.5" r="152" />
+                                    <path
+                                        d="M635.52,296.48A151.51,151.51,0,1,1,528.4,340.85a150.49,150.49,0,0,1,107.12-44.37m0-1A152.5,152.5,0,1,0,788,448a152.5,152.5,0,0,0-152.5-152.5Z"
+                                        transform="translate(-483.02 -295.48)" />
+                                </g>
+                                <text class="cls-2" transform="translate(134.03 37.19)">12</text>
+                                <text class="cls-2" transform="translate(268.44 163.07)">3</text>
+                                <text class="cls-2" transform="translate(143.27 283.3)">6</text>
+                                <text class="cls-2" transform="translate(15.44 163.07)">9</text>
+                                <rect class="cls-3" style="transform-origin: center" id="minute-hand" x="148.98"
+                                    y="21.52" width="8" height="131" />
+                                <rect class="cls-4" style="transform-origin: center" id="hour-hand" height="100"
+                                    width="8" x="148.98" y="50.52"></rect>
+                                <line class="cls-5" x1="283.52" y1="227.4" x2="261.44" y2="214.65" />
+                                <line class="cls-5" x1="228.17" y1="283.99" x2="215.43" y2="261.91" />
+                                <line class="cls-5" x1="43.89" y1="89.95" x2="21.81" y2="77.2" />
+                                <line class="cls-5" x1="90.22" y1="43.61" x2="77.48" y2="21.53" />
+                                <line class="cls-5" x1="285.42" y1="76.02" x2="263.34" y2="88.77" />
+                                <line class="cls-5" x1="43.42" y1="215.02" x2="21.34" y2="227.77" />
+                                <line class="cls-5" x1="229.76" y1="19.36" x2="217.01" y2="41.44" />
+                                <line class="cls-5" x1="89.76" y1="262.36" x2="77.01" y2="284.44" />
+                                <circle class="cls-3" cx="152.98" cy="152.52" r="7.5" />
+                            </svg>
+                        </div>
+
+                        <button id="edit-alarms" class="button">
+                            <i class="material-icons">alarm</i> Edit Alarms
+                        </button>
+
+                        <button id="stop-alarm" class="button">Stop Alarm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="modal">
+
+            <div id="tab-container">
+                <div class="tab tab1">
+                    <div class="flex">
+                        <div></div>
+                        <div class="no-grow">
+                            <button id="close-modal" class="plain-button">
+                                <i class="material-icons">close</i>
+                            </button>
+                        </div>
+                    </div>
+
+
+
+                    <button class="button block bottom-margin-20" id="add-alarm">
+                        <i class="material-icons">add</i>
+                        Add Alarm</button>
+                    <div id="alarm-item-container"> </div>
+                </div>
+                <div class="tab tab2">
+                    <h1>Edit Alarm</h1>
+
+                    <div class="data-label">Name</div>
+                    <input type="text" id="alarm-name" placeholder="Alarm Name">
+
+                    <div class="flex">
                         <div>
-                                <!-- <video id="wake-up-video" autoplay="true" loop="true" src="resources/videos/wake-up-video.mp4"></video> -->
-                                <div id="time"></div>
-                    
-                                <div id="analog-clock-container">
-                                    <svg id="analog-clock" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 305 305">
-                                        <defs>
-                                            <style>
-                                                .cls-1 {
-                                                    fill: #666;
-                                                }
-                    
-                                                .cls-2 {
-                                                    font-size: 36px;
-                                                    fill: #fff;
-                                                    font-family: 'Open Sans';
-                                                }
-                    
-                                                .cls-3 {
-                                                    fill: #b3b3b3;
-                                                }
-                    
-                                                .cls-4 {
-                                                    fill: #b3b3de;
-                                                }
-                    
-                                                .cls-5 {
-                                                    fill: none;
-                                                    stroke: #fff;
-                                                    stroke-miterlimit: 10;
-                                                    stroke-width: 2px;
-                                                }
-                                            </style>
-                                        </defs>
-                                        <title>analog-clock</title>
-                                        <g>
-                                            <circle class="cls-1" cx="152.5" cy="152.5" r="152" />
-                                            <path
-                                                d="M635.52,296.48A151.51,151.51,0,1,1,528.4,340.85a150.49,150.49,0,0,1,107.12-44.37m0-1A152.5,152.5,0,1,0,788,448a152.5,152.5,0,0,0-152.5-152.5Z"
-                                                transform="translate(-483.02 -295.48)" />
-                                        </g>
-                                        <text class="cls-2" transform="translate(134.03 37.19)">12</text>
-                                        <text class="cls-2" transform="translate(268.44 163.07)">3</text>
-                                        <text class="cls-2" transform="translate(143.27 283.3)">6</text>
-                                        <text class="cls-2" transform="translate(15.44 163.07)">9</text>
-                                        <rect class="cls-3" style="transform-origin: center" id="minute-hand" x="148.98" y="21.52" width="8"
-                                            height="131" />
-                                        <rect class="cls-4" style="transform-origin: center" id="hour-hand" height="100" width="8"
-                                            x="148.98" y="50.52"></rect>
-                                        <line class="cls-5" x1="283.52" y1="227.4" x2="261.44" y2="214.65" />
-                                        <line class="cls-5" x1="228.17" y1="283.99" x2="215.43" y2="261.91" />
-                                        <line class="cls-5" x1="43.89" y1="89.95" x2="21.81" y2="77.2" />
-                                        <line class="cls-5" x1="90.22" y1="43.61" x2="77.48" y2="21.53" />
-                                        <line class="cls-5" x1="285.42" y1="76.02" x2="263.34" y2="88.77" />
-                                        <line class="cls-5" x1="43.42" y1="215.02" x2="21.34" y2="227.77" />
-                                        <line class="cls-5" x1="229.76" y1="19.36" x2="217.01" y2="41.44" />
-                                        <line class="cls-5" x1="89.76" y1="262.36" x2="77.01" y2="284.44" />
-                                        <circle class="cls-3" cx="152.98" cy="152.52" r="7.5" />
-                                    </svg>
-                                </div>
-                    
-                                <button id="edit-alarms" class="button">
-                                    <i class="material-icons">alarm</i> Edit Alarms
-                                </button>
+                            <div class="data-label">Hour</div>
+                            <input type="number" id="alarm-hour" placeholder="Hour">
+                        </div>
+                        <div>
+                            <div class="data-label">Minute</div>
+                            <input type="number" id="alarm-minute" placeholder="Minute">
+                        </div>
+                    </div>
 
-                                <button id="stop-alarm" class="button">Stop Alarm</button>
-                            </div>
-                </div>
-            </div>
-        </div>
+                    <div class="top-margin-20">
+                        <label class="check-label">
+                            <input type="checkbox" id="isSunday"> Sunday
+                        </label>
+                        <label class="check-label">
+                            <input type="checkbox" id="isMonday"> Monday
+                        </label>
+                        <label class="check-label">
+                            <input type="checkbox" id="isTuesday"> Tuesday
+                        </label>
+                        <label class="check-label">
+                            <input type="checkbox" id="isWednesday"> Wednesday
+                        </label>
+                        <label class="check-label">
+                            <input type="checkbox" id="isThursday"> Thursday
+                        </label>
+                        <label class="check-label">
+                            <input type="checkbox" id="isFriday"> Friday
+                        </label>
+                        <label class="check-label">
+                            <input type="checkbox" id="isSaturday"> Saturday
+                        </label>
+                    </div>
 
-        
-    <div id="modal">
 
-            <div class="flex">
-                <div></div>
-                <div class="no-grow">
-                    <button id="close-modal" class="plain-button">
-                        <i class="material-icons">close</i>
+                    <button class="button block top-margin-20 bottom-margin-20" id="save-alarm">
+
+
+                        <i class="material-icons">save</i>
+                        Save</button>
+
+                    <button class="plain-button block" id="cancel-edit">
+
+                            <i class="material-icons">chevron_left</i> <span style="font-size: 24px">Back</span>
                     </button>
+
                 </div>
             </div>
-    
-    
-    
-            <button class="button block bottom-margin-20">
-                <i class="material-icons">add</i>
-                Add Alarm</button>
-            <div id="alarm-item-container">
-                <div class="alarm-item">
-                    <h3>Morning Alarm</h3>
-                    <h1 class="small-data">6:00 AM</h1>
-                    <span class="day">S</span>
-                    <span class="day selected">M</span>
-                    <span class="day selected">T</span>
-                    <span class="day selected">W</span>
-                    <span class="day selected">T</span>
-                    <span class="day selected">F</span>
-                    <span class="day">S</span>
-    
-                </div>
-    
-    
-                <div class="alarm-item">
-                    <h3>Evening Alarm</h3>
-                    <h1 class="small-data">6:00 PM</h1>
-                    <span class="day">S</span>
-                    <span class="day selected">M</span>
-                    <span class="day selected">T</span>
-                    <span class="day selected">W</span>
-                    <span class="day selected">T</span>
-                    <span class="day selected">F</span>
-                    <span class="day">S</span>
-    
-                </div>
-            </div>
-    
+
         </div>
-
-
-
-
     </div>
 
 
@@ -157,10 +185,44 @@
     <script type="text/javascript" src="js/project.js"></script>
     </body>
 
-    <script type="text/html" id="alarm-template">
+    <script type="text/html" id="alarm-item">
+        <div class="alarm-item" id="parent{{id}}">
+                <div class="flex">
+                    <div>
+                            <h3>{{name}}</h3>
+                            <h1 class="small-data">{{hourDisplay}}:{{minuteDisplay}} {{ampm}}</h1>
+                    </div>
+                    <div class="no-grow">
+                            <button data-alarmId={{id}} class="plain-button edit-alarm-button">
+                                <i class="material-icons">edit</i>
+                            </button>
+                        <button data-alarmId={{id}} class="plain-button delete-alarm-button">
+                            <i class="material-icons">delete</i>
+                        </button>
+                    </div>
+                </div>
+                
+                <span class="day {{sunSelected}}">S</span>
+                <span class="day {{monSelected}}">M</span>
+                <span class="day {{tueSelected}}">T</span>
+                <span class="day {{wedSelected}}">W</span>
+                <span class="day {{thuSelected}}">T</span>
+                <span class="day {{friSelected}}">F</span>
+                <span class="day {{satSelected}}">S</span>
 
+            </div>
+        </div>
     </script>
 
-    
+    <script type="text/html" id="no-alarms">
+
+        <div style="text-align: center">
+            <img style="height: 150px" src="resources/images/clock-icon.png">
+
+            <h2>You have no alarms setup</h2>
+        </div>
+    </script>
+
+
 
 </html>

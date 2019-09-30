@@ -8,6 +8,32 @@ h1, h2, h3, h4, h5 {
     margin: 0;
 }
 
+input[type=text], input[type=number] {
+    padding: 7px;
+    font-size: 16px;
+    border-width: 1px;
+    border-color: #CCCCCC;
+    background-color: #FFFFFF;
+    color: #170e2e;
+    border-style: solid;
+    border-radius: 0px;
+    text-shadow: 0px 0px 2px rgba(66, 66, 66, .75);
+    display: block;
+    width: calc(100% - 20px);
+}
+
+input[type=text]:focus, input[type=number]:focus {
+    outline: none;
+    box-shadow: 0px 0px 5px rgba(61, 194, 27, .75);
+}
+
+.data-label {
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
 #phone-space {
     height: 823px;
     width: 411px;
@@ -16,6 +42,9 @@ h1, h2, h3, h4, h5 {
     margin: 0 auto;
     margin-top: 30px;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    background-image: url(../resources/images/wake-up-bg.jpg);
+    background-size: cover;
+    background-position: 50% 50%;
 }
 
 #time {
@@ -23,6 +52,12 @@ h1, h2, h3, h4, h5 {
     font-size: 52px;
     text-align: center;
     margin-top: 100px;
+    margin-bottom: 60px;
+    background-color: rgba(0,0,0,.1);
+    width: calc(100% - 50px);
+    border-radius: 0 20px 20px 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .small-data {
@@ -43,46 +78,52 @@ h1, h2, h3, h4, h5 {
 }
 
 .button {
-    -moz-box-shadow: 0px 1px 0px 0px #3dc21b;
-    -webkit-box-shadow: 0px 1px 0px 0px #3dc21b;
-    box-shadow: 0px 1px 0px 0px #3dc21b;
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #44c767), color-stop(1, #5cbf2a));
-    background: -moz-linear-gradient(top, #44c767 5%, #5cbf2a 100%);
-    background: -webkit-linear-gradient(top, #44c767 5%, #5cbf2a 100%);
-    background: -o-linear-gradient(top, #44c767 5%, #5cbf2a 100%);
-    background: -ms-linear-gradient(top, #44c767 5%, #5cbf2a 100%);
-    background: linear-gradient(to bottom, #44c767 5%, #5cbf2a 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#44c767', endColorstr='#5cbf2a', GradientType=0);
-    background-color: #44c767;
-    -moz-border-radius: 28px;
-    -webkit-border-radius: 28px;
+    background: linear-gradient(to bottom, #C973FF, #AeBAF8 100%);
     border-radius: 28px;
-    border: 1px solid #18ab29;
+    border: 1px solid #aa63d6;
     display: inline-block;
     cursor: pointer;
-    color: #ffffff;
+    color: #fff;
     font-family: Arial;
-    font-size: 17px;
+    font-size: 24px;
     padding: 16px 31px;
     text-decoration: none;
-    text-shadow: 0px 1px 0px #2f6627;
+    text-shadow: 0px 1px 0px #aa63d6;
+    text-transform: uppercase;
+    transition: background .5s;
 }
 
 .button:hover {
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #5cbf2a), color-stop(1, #44c767));
-    background: -moz-linear-gradient(top, #5cbf2a 5%, #44c767 100%);
-    background: -webkit-linear-gradient(top, #5cbf2a 5%, #44c767 100%);
-    background: -o-linear-gradient(top, #5cbf2a 5%, #44c767 100%);
-    background: -ms-linear-gradient(top, #5cbf2a 5%, #44c767 100%);
-    background: linear-gradient(to bottom, #5cbf2a 5%, #44c767 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5cbf2a', endColorstr='#44c767', GradientType=0);
-    background-color: #5cbf2a;
+    background: linear-gradient(to bottom, #AeBAF8 5%, #C973FF 100%);
+}
+
+@keyframes pulsate {
+    0% {
+        box-shadow: 0px 0px 0px 0px rgba(174, 186, 248, 1);
+    }
+    100% {
+        box-shadow: 0px 0px 20px 20px rgba(174, 186, 248, 1);
+        ;
+    }
+}
+
+.pulsate-button {
+    animation: pulsate 1.5s ease-out !important;
+    animation-direction: alternate !important;
+    animation-iteration-count: infinite !important;
 }
 
 .plain-button {
     background-color: transparent;
     border: none;
     cursor: pointer;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, .7);
+    font-size: 17px;
+}
+
+.plain-button i.material-icons, button i.material-icons {
+    font-size: 20px;
 }
 
 .plain-button:hover {
@@ -130,8 +171,14 @@ h1, h2, h3, h4, h5 {
     opacity: 0;
     transform: scale(.26) translateX(-50%);
     transform-origin: 0%;
-    padding: 10px;
     z-index: 2;
+    max-height: calc(100% - 250px);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.tab {
+    padding: 10px;
 }
 
 #modal.show {
@@ -157,11 +204,51 @@ h1, h2, h3, h4, h5 {
     max-width: 200px;
     display: table;
     margin: 0 auto;
+    margin-bottom: 130px;
 }
 
 .block {
     display: block;
     width: 100%;
+}
+
+.check-label {
+    display: inline-block;
+    min-width: 111px;
+}
+
+@keyframes collapse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+@keyframes expand {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.collapse {
+    animation: collapse .5s;
+}
+
+.expand {
+    animation: expand .5s;
+}
+
+.top-margin-20 {
+    margin-top: 20px;
 }
 
 .bottom-margin-20 {
@@ -203,6 +290,32 @@ h1, h2, h3, h4, h5 {
     display: initial;
 }
 
+#tab-container {
+    width: 200%;
+    display: flex;
+    transition: transform .5s ease-out;
+}
+
+#tab-container.tab2 {
+    transform: translateX(-50%);
+}
+
+#tab-container.tab2 .tab1 {
+    visibility: collapse;
+    height: 0;
+    overflow: hidden;
+}
+
+#tab-container:not(.tab2) .tab2 {
+    visibility: collapse;
+    height: 0;
+    overflow: hidden;
+}
+
+#tab-container>div {
+    flex: 1;
+}
+
 @keyframes pan {
     0% {
         transform: translateX(-10%);
@@ -215,9 +328,9 @@ h1, h2, h3, h4, h5 {
 #wakeUpVideo {
     min-height: 100%;
     display: none;
-    animation: pan 31s ease-out;
+    /* animation: pan 31s ease-out;
     animation-direction: alternate;
-    animation-iteration-count: infinite;
+    animation-iteration-count: infinite; */
 }
 
 #videoDiv {
@@ -244,7 +357,20 @@ h1, h2, h3, h4, h5 {
 }
 
 #videoMessage {
-    text-shadow: 2px 2px 2px #000000;
+    text-shadow: 2px 2px 4px rgba(0,0,0,.4);
     color: white;
     z-index: 1;
+}
+
+@media(max-width: 768px) {
+    body {
+        margin: 0;
+    }
+    #phone-space {
+        display: block;
+        margin: 0;
+        box-shadow: none;
+        width: 100%;
+        height: 100vh;
+    }
 }
