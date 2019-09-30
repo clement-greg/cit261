@@ -11,7 +11,73 @@
         });
     }
 
+
+
+    Utilities.swipeDetect = function (el, callback) {
+
+        function touchStart(e) {
+            var touchObj = e.changedTouches[0];
+            swipeDir = 'none';
+            dist = 0;
+            startX = touchObj.pageX;
+            startY = touchObj.pageY;
+            startTime = new Date().getTime();
+        }
+
+        function touchEnd(e) {
+            var touchobj = e.changedTouches[0]
+            distX = touchobj.pageX - startX;
+            distY = touchobj.pageY - startY;
+            elapsedTime = new Date().getTime() - startTime;
+            if (elapsedTime <= allowedTime) {
+                if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint) {
+                    swipeDir = (distX < 0) ? 'left' : 'right';
+                }
+                else if (Math.abs(distY) >= threshold && Math.abs(distX) <= restraint) {
+                    swipeDir = (distY < 0) ? 'up' : 'down';
+                }
+            }
+            if (swipeDir !== 'none') {
+                handleSwipe(swipeDir);
+            }
+        }
+
+        var touchSurface = el,
+            swipeDir,
+            startX,
+            startY,
+            distX,
+            distY,
+            threshold = 150,
+            restraint = 100,
+            allowedTime = 300,
+            elapsedTime,
+            startTime,
+            handleSwipe = callback || function (swipeDir) { }
+
+        touchSurface.removeEventListener('touchstart', touchStart);
+        touchSurface.addEventListener('touchstart', touchStart, true);
+
+        touchSurface.removeEventListener('touchend', touchEnd);
+        touchSurface.addEventListener('touchend', touchEnd, true);
+    }
+
     function DOMUpdator() { }
+
+    DOMUpdator.prototype.showSnackbar = function (message) {
+        let snackbarElement = document.getElementById('snack-bar');
+
+        snackbarElement.innerHTML = message;
+
+        snackbarElement.style.display = 'block';
+
+        snackbarElement.classList.add('expand-snackbar');
+
+        setTimeout(() => {
+            snackbarElement.classList.remove('expand-snackbar');
+            snackbarElement.style.display = 'none';
+        }, 5000);
+    }
     DOMUpdator.prototype.updateTime = function (displayTime) {
         let ampm = 'AM';
         let hours = displayTime.getHours();
@@ -39,16 +105,18 @@
         let currentMinutes = displayTime.getMinutes() + (displayTime.getSeconds() / 60);
         let currentHours = displayTime.getHours() + (currentMinutes / 60);
 
+        // Manipulating CSS Class Properties Using JavaScript
         minuteHand.style.transform = 'rotate(' + (currentMinutes * 6) + 'deg)';
         hourHand.style.transform = 'rotate(' + (currentHours * 30) + 'deg)';
     }
 
     DOMUpdator.prototype.playAlarm = function (alarm) {
-        console.log('playing alarm: ' + alarm.name);
+        // Manipulating CSS Class Properties Using JavaScript
         document.getElementById('wakeUpVideo').style.display = 'initial';
         document.getElementById('stop-alarm').style.visibility = 'initial';
         document.getElementById('edit-alarms').style.display = 'none';
         document.getElementById('stop-alarm').classList.add('expand');
+        document.getElementById('stop-alarm').classList.remove('pulsate-button');
 
         setTimeout(function () {
             document.getElementById('stop-alarm').classList.remove('expand');
@@ -164,18 +232,65 @@
 
 
     function Clock() {
+        let thisItem = this;
         this.alarms = [];
         this.domUpdator = new DOMUpdator();
+
         this.localStorage = new LocalStorageHelper(this);
 
         this.alarms = this.localStorage.getAlarms();
 
         this.saveAlarms = function () { this.localStorage.saveAlarms(); }
+
+        this.setupSwipeHandler = function () {
+            Utilities.swipeDetect(document, function (swipeDir) {
+                if (swipeDir === 'up') {
+                    thisItem.activeAlarm = null;
+                    thisItem.domUpdator.stopAlarm();
+                }
+                if (swipeDir === 'down' && thisItem.activeAlarm) {
+                    thisItem.activeAlarm.snooze();
+                    thisItem.domUpdator.stopAlarm();
+                    thisItem.activeAlarm = null;
+                    thisItem.domUpdator.showSnackbar('Alarm Snoozed');
+                }
+            });
+        }
+    }
+
+    Clock.prototype.start = function () {
+        let thisItem = this;
+        let thisObject = this;
+
+        this.interval = setInterval(function () {
+            thisObject.domUpdator.updateTime(new Date());
+            if (!thisObject.alarms) {
+                thisObject.alarms = [];
+            }
+
+            for (let alarm of thisObject.alarms) {
+                if (alarm.checkAlarm()) {
+                    alarm.startAlarm();
+                    thisItem.activeAlarm = alarm;
+
+                    thisObject.domUpdator.playAlarm(alarm);
+                }
+            }
+        }, 500);
+
+        this.setupSwipeHandler();
+    };
+
+    Clock.prototype.addAlarm = function (alarm) {
+        this.alarms.push(alarm);
+        this.saveAlarms();
     }
 
     function LocalStorageHelper(clock) {
         let alarmConfigKey = 'alarm-config';
         this.saveAlarms = function () {
+            // LocalStorage - setItem
+            // JSON.stringify
             localStorage.setItem(alarmConfigKey, JSON.stringify(clock.alarms));
         }
 
@@ -183,6 +298,8 @@
             if (localStorage.getItem) {
                 try {
 
+                    // LocalStorage - getItem
+                    //JSON.parse
                     var alarmsRaw = JSON.parse(localStorage.getItem(alarmConfigKey));
                     let results = [];
 
@@ -204,29 +321,6 @@
         }
     }
 
-    Clock.prototype.start = function () {
-        let thisObject = this;
-
-        this.interval = setInterval(function () {
-            thisObject.domUpdator.updateTime(new Date());
-            if (!thisObject.alarms) {
-                thisObject.alarms = [];
-            }
-
-            for (let alarm of thisObject.alarms) {
-                if (alarm.checkAlarm()) {
-                    alarm.startAlarm();
-                    thisObject.domUpdator.playAlarm(alarm);
-                }
-            }
-        }, 500);
-    };
-
-    Clock.prototype.addAlarm = function (alarm) {
-        this.alarms.push(alarm);
-        this.saveAlarms();
-    }
-
     // JavaScript Object - Object Creation
     let clock = new Clock();
 
@@ -245,6 +339,7 @@
             document.getElementById('modal').classList.remove('show');
             document.getElementById('modal-backdrop').classList.remove('show');
             document.getElementById('tab-container').classList.remove('tab2');
+            clock.setupSwipeHandler();
         }
 
         this.addNewAlarm = function () {
@@ -255,15 +350,11 @@
         }
 
         this.editAlarm = function (alarm) {
-
             editedAlarm = alarm;
-
             document.getElementById('tab-container').classList.add('tab2');
-
             document.getElementById('alarm-name').value = alarm.name;
             document.getElementById('alarm-hour').value = alarm.hour;
             document.getElementById('alarm-minute').value = alarm.minute;
-
             document.getElementById('isSunday').checked = alarm.sundayActive;
             document.getElementById('isMonday').checked = alarm.mondayActive;
             document.getElementById('isTuesday').checked = alarm.tuesdayActive;
@@ -271,6 +362,12 @@
             document.getElementById('isThursday').checked = alarm.thursdayActive;
             document.getElementById('isFriday').checked = alarm.fridayActive;
             document.getElementById('isSaturday').checked = alarm.saturdayActive;
+
+            Utilities.swipeDetect(document, function (swipeDir) {
+                if (swipeDir === 'right') {
+                    thisItem.closeEdit();
+                }
+            });
 
         }
 
@@ -292,8 +389,6 @@
             document.getElementById('tab-container').classList.remove('tab2');
             editedAlarm.alarmRinging = false;
             clock.saveAlarms();
-            console.log(editedAlarm);
-            console.log(clock.alarms);
         }
 
         this.closeEdit = function () {
@@ -402,6 +497,10 @@
             myModalHelper.closeEdit();
         });
     }
+
+
+
+
 
 
 

@@ -7,7 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Alarm Clock</title>
     <link href="https://fonts.googleapis.com/css?family=Raleway|Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="icon" type="image/png" href="resources/images/fav-icon.png">
     <link href="css/project.css?v=1" rel="stylesheet" </head> <body>
     <div id="phone-space">
         <!-- <h1>Alarm Clock</h1> -->
@@ -83,7 +85,7 @@
                         </div>
 
                         <button id="edit-alarms" class="button">
-                            <i class="material-icons">alarm</i> Edit Alarms
+                            <i class="material-icons">alarm</i> My Alarms
                         </button>
 
                         <button id="stop-alarm" class="button">Stop Alarm</button>
@@ -98,7 +100,11 @@
             <div id="tab-container">
                 <div class="tab tab1">
                     <div class="flex">
-                        <div></div>
+                        <div>
+                            <h2>
+                                <i class="material-icons">alarm</i> My Alarms
+                            </h2>
+                        </div>
                         <div class="no-grow">
                             <button id="close-modal" class="plain-button">
                                 <i class="material-icons">close</i>
@@ -108,10 +114,12 @@
 
 
 
+
+                    <div id="alarm-item-container"> </div>
+
                     <button class="button block bottom-margin-20" id="add-alarm">
                         <i class="material-icons">add</i>
                         Add Alarm</button>
-                    <div id="alarm-item-container"> </div>
                 </div>
                 <div class="tab tab2">
                     <h1>Edit Alarm</h1>
@@ -132,7 +140,7 @@
 
                     <div class="top-margin-20">
                         <label class="check-label">
-                            <input type="checkbox"  id="isSunday"> Sunday
+                            <input type="checkbox" id="isSunday"> Sunday
                         </label>
                         <label class="check-label">
                             <input type="checkbox" id="isMonday"> Monday
@@ -155,7 +163,7 @@
                     </div>
 
 
-                    <button class="button block top-margin-20 bottom-margin-20" id="save-alarm">
+                    <button class="button block top-margin-20 bottom-margin-10" id="save-alarm">
 
 
                         <i class="material-icons">save</i>
@@ -163,13 +171,18 @@
 
                     <button class="plain-button block" id="cancel-edit">
 
-                            <i class="material-icons">chevron_left</i> <span style="font-size: 24px">Back</span>
+                        <i class="material-icons">chevron_left</i> Back
                     </button>
 
                 </div>
             </div>
 
         </div>
+
+        <div id="snack-bar">
+            Here is some snackbar text
+        </div>
+
     </div>
 
 
@@ -177,6 +190,7 @@
     <div id="modal-backdrop">
 
     </div>
+
 
 
 
