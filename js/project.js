@@ -123,6 +123,9 @@
             document.getElementById('stop-alarm').classList.add('pulsate-button');
         }, 5000);
 
+        wakeUpVideo.currentTime = 0;
+        wakeUpSound.currentTime = 0;
+
         wakeUpVideo.play();
         wakeUpSound.play();
     };
