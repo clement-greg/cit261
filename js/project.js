@@ -11,8 +11,6 @@
         });
     }
 
-
-
     Utilities.swipeDetect = function (el, callback) {
 
         function touchStart(e) {
@@ -500,12 +498,6 @@
             myModalHelper.closeEdit();
         });
     }
-
-
-
-
-
-
 
     wireUpEventHandlers();
 })();

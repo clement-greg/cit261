@@ -17,19 +17,19 @@ export class Alarm {
 
     get satSelected() { if (this.saturdayActive) { return 'selected'; } }
 
-    friSelected() { if (this.fridayActive) { return 'selected'; } }
+    get friSelected() { if (this.fridayActive) { return 'selected'; } }
 
-    thuSelected() { if (this.thursdayActive) { return 'selected'; } }
+    get thuSelected() { if (this.thursdayActive) { return 'selected'; } }
 
-    wedSelected() { if (this.wednesdayActive) { return 'selected'; } }
+    get wedSelected() { if (this.wednesdayActive) { return 'selected'; } }
 
-    tueSelected() { if (this.tuesdayActive) { return 'selected'; } }
+    get tueSelected() { if (this.tuesdayActive) { return 'selected'; } }
 
-    monSelected() { if (this.mondayActive) { return 'selected'; } }
+    get monSelected() { if (this.mondayActive) { return 'selected'; } }
 
-    sunSelected() { if (this.sundayActive) { return 'selected'; } }
+    get sunSelected() { if (this.sundayActive) { return 'selected'; } }
 
-    hourDisplay() {
+    get hourDisplay() {
         if (this.hour > 12) {
             return this.hour - 12;
         } else {
@@ -105,7 +105,7 @@ export class WeekdayAlarm extends Alarm {
     }
 }
 
-// Object
+// Object Inheritance
 export class WeekendAlarm extends Alarm {
     constructor(name, hour, minute) {
         super(name, hour, minute, true, false, false, false, false, false, true);

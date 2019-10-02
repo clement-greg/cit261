@@ -14,7 +14,6 @@ import { DOMUpdater } from './dom-updater.js';
     new AlarmEditor(clock);
 
     const stats = new Statistics();
-    
 
     function setupSwipeHandler() {
         Utilities.swipeDetect(document, (swipeDir) => {

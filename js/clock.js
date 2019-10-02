@@ -2,9 +2,6 @@ import { LocalStorageHelper } from './local-storage-helper.js';
 import { DOMUpdater } from './dom-updater.js';
 
 export class Clock {
-    // alarms = [];
-    // localStorage;
-
     constructor() {
         this.localStorage = new LocalStorageHelper(this);
         this.alarms = this.localStorage.getAlarms();
@@ -12,13 +9,9 @@ export class Clock {
         document.getElementById('stop-alarm').addEventListener('click', function () {
             DOMUpdater.stopAlarm();
         });
-
-
     }
 
     saveAlarms() { this.localStorage.saveAlarms(); }
-
-
 
     start() {
         let thisItem = this;
@@ -39,8 +32,6 @@ export class Clock {
                 }
             }
         }, 500);
-
-        // this.setupSwipeHandler();
     }
 
     addAlarm(alarm) {
