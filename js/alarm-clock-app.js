@@ -1,7 +1,9 @@
 import { Clock } from './clock.js';
 import { AlarmEditor } from './alarm-editor.js';
-import { HTTP } from './http.js';
-import { Metric, Donut } from './donut.js';
+import { showSnackBar } from './snack-bar.js';
+import { Utilities } from './utilities.js';
+import { Statistics } from './statistics.js';
+import { DOMUpdater } from './dom-updater.js';
 
 // Don't pollute the global namespace
 (function () {
@@ -11,23 +13,30 @@ import { Metric, Donut } from './donut.js';
 
     new AlarmEditor(clock);
 
-    HTTP.getJSON('https://dummyservice20191001071223.azurewebsites.net/api/alarms').then(data => {
-        console.log(data);
-        const donut = new Donut('pie-chart', 'legend-container');
-        const metrics = [
-            new Metric('1st Alarm', data.filter(i => !i.snoozeDates || i.snoozeDates.length === 0).length),
-            new Metric('1 Snooze', data.filter(i => i.snoozeDates && i.snoozeDates.length === 1).length),
-            new Metric('2 Snoozes', data.filter(i => i.snoozeDates && i.snoozeDates.length === 2).length),
-            new Metric('3 Or More Snoozes', data.filter(i => i.snoozeDates && i.snoozeDates.length >= 3).length),
+    const stats = new Statistics();
+    
 
-        ];
+    function setupSwipeHandler() {
+        Utilities.swipeDetect(document, (swipeDir) => {
+            if (swipeDir === 'up') {
+                clock.activeAlarm = null;
+                DOMUpdater.stopAlarm();
+            }
+            if (swipeDir === 'down' && clock.activeAlarm) {
+                clock.activeAlarm.snooze();
+                DOMUpdater.stopAlarm();
+                clock.activeAlarm = null;
+                showSnackBar('Alarm Snoozed');
+            }
+            if (swipeDir === 'right') {
+                document.getElementById('main-tab-container').classList.remove('tab2');
+            }
+            if (swipeDir === 'left') {
+                document.getElementById('main-tab-container').classList.add('tab2');
+                stats.generateStatistics();
+            }
+        });
+    }
 
-        console.log(metrics);
-
-        donut.generateChart(metrics);
-    });
-
-
-
-
+    setupSwipeHandler();
 })();

@@ -1,7 +1,5 @@
 import { LocalStorageHelper } from './local-storage-helper.js';
-import { Utilities } from './utilities.js';
 import { DOMUpdater } from './dom-updater.js';
-import { showSnackBar } from './snack-bar.js';
 
 export class Clock {
     // alarms = [];
@@ -15,38 +13,12 @@ export class Clock {
             DOMUpdater.stopAlarm();
         });
 
-        document.getElementById('view-stats').addEventListener('click', () => {
 
-            document.getElementById('main-tab-container').classList.add('tab2');
-        });
-
-        document.getElementById('go-home-button').addEventListener('click', () => {
-            document.getElementById('main-tab-container').classList.remove('tab2');
-        });
     }
 
     saveAlarms() { this.localStorage.saveAlarms(); }
 
-    setupSwipeHandler() {
-        Utilities.swipeDetect(document, (swipeDir) => {
-            if (swipeDir === 'up') {
-                this.activeAlarm = null;
-                DOMUpdater.stopAlarm();
-            }
-            if (swipeDir === 'down' && this.activeAlarm) {
-                this.activeAlarm.snooze();
-                DOMUpdater.stopAlarm();
-                this.activeAlarm = null;
-                showSnackBar('Alarm Snoozed');
-            }
-            if (swipeDir === 'right') {
-                document.getElementById('main-tab-container').classList.remove('tab2');
-            }
-            if (swipeDir === 'left') {
-                document.getElementById('main-tab-container').classList.add('tab2');
-            }
-        });
-    }
+
 
     start() {
         let thisItem = this;
@@ -68,7 +40,7 @@ export class Clock {
             }
         }, 500);
 
-        this.setupSwipeHandler();
+        // this.setupSwipeHandler();
     }
 
     addAlarm(alarm) {

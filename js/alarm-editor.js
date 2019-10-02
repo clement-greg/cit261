@@ -25,7 +25,6 @@ export class AlarmEditor {
         document.getElementById('modal').classList.remove('show');
         document.getElementById('modal-backdrop').classList.remove('show');
         document.getElementById('tab-container').classList.remove('tab2');
-        this.clock.setupSwipeHandler();
     }
 
     addNewAlarm() {
@@ -47,12 +46,6 @@ export class AlarmEditor {
         document.getElementById('isThursday').checked = alarm.thursdayActive;
         document.getElementById('isFriday').checked = alarm.fridayActive;
         document.getElementById('isSaturday').checked = alarm.saturdayActive;
-
-        Utilities.swipeDetect(document, (swipeDir) => {
-            if (swipeDir === 'right') {
-                this.closeEdit();
-            }
-        });
     }
 
     saveAlarm() {

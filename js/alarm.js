@@ -52,6 +52,26 @@ export class Alarm {
         }
 
         let isTimeToRing = now.getHours() === this.hour && now.getMinutes() == this.minute;
+
+        
+        const day = now.getDay();
+
+        if (day === 0 && !this.sundayActive) {
+            isTimeToRing = false;
+        } else if (day === 1 && !this.mondayActive) {
+            isTimeToRing = false;
+        } else if (day === 2 && !this.tuesdayActive) {
+            isTimeToRing = false;
+        } else if (day === 3 && !this.wednesdayActive) {
+            isTimeToRing = false;
+        } else if (day === 4 && !this.thursdayActive) {
+            isTimeToRing = false;
+        } else if (day === 5 && !this.fridayActive) {
+            isTimeToRing = false;
+        } else if (day === 6 && !this.saturdayActive) {
+            isTimeToRing = false;
+        }
+
         if (!isTimeToRing) {
             this.alarmRinging = false;
         }
@@ -81,7 +101,7 @@ export class Alarm {
 // Object Inheritance
 export class WeekdayAlarm extends Alarm {
     constructor(name, hour, minute) {
-        super( name, hour, minute, false, true, true, true, true, true, false);
+        super(name, hour, minute, false, true, true, true, true, true, false);
     }
 }
 
