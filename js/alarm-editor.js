@@ -2,7 +2,6 @@ import { WeekdayAlarm, Alarm } from './alarm.js';
 import { Utilities } from './utilities.js';
 
 export class AlarmEditor {
-    editedAlarm = null;
 
     constructor(clock) {
         this.clock = clock;
@@ -88,24 +87,8 @@ export class AlarmEditor {
         if (this.clock.alarms.length) {
             for (let alarm of this.clock.alarms) {
                 let alarmTemplate = document.getElementById('alarm-item').innerHTML;
-                for (let key in alarm) {
-                    let regEx = new RegExp('{{' + key + '}}', 'g');
 
-                    if (typeof alarm[key] === 'function' && alarmTemplate.indexOf('{{' + key + '}}') > -1) {
-                        alarmTemplate = alarmTemplate.replace(regEx, alarm[key]());
-                    } else {
-                        alarmTemplate = alarmTemplate.replace(regEx, alarm[key]);
-                    }
-                }
-                for (let key of Object.getOwnPropertyNames(Alarm.prototype)) {
-                    let regEx = new RegExp('{{' + key + '}}', 'g');
-
-                    if (typeof alarm[key] === 'function' && alarmTemplate.indexOf('{{' + key + '}}') > -1) {
-                        alarmTemplate = alarmTemplate.replace(regEx, alarm[key]());
-                    } else {
-                        alarmTemplate = alarmTemplate.replace(regEx, alarm[key]);
-                    }
-                }
+                alarmTemplate = Utilities.replaceStringWithObject(alarmTemplate, alarm, Alarm.prototype);
 
                 // DOM Manipulation - createElement
                 const alarmDiv = document.createElement('div');

@@ -1,8 +1,8 @@
 import { Alarm } from './alarm.js';
 export class LocalStorageHelper {
-    alarmConfigKey = 'alarm-config';
     constructor(clock) {
         this.clock = clock;
+        this.alarmConfigKey = 'alarm-config';
     }
 
     saveAlarms() {

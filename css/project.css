@@ -3,6 +3,7 @@ body {
     font-weight: 30;
     background-color: #787878;
     color: #fff;
+    overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5 {
@@ -194,6 +195,7 @@ input[type=checkbox].css-checkbox+label.css-label {
     margin-right: 20px;
     margin-top: 40px;
     visibility: collapse;
+    display: none;
 }
 
 #modal {
@@ -243,7 +245,7 @@ input[type=checkbox].css-checkbox+label.css-label {
     max-width: 200px;
     display: table;
     margin: 0 auto;
-    margin-bottom: 130px;
+    margin-bottom: 120px;
 }
 
 .block {
@@ -302,6 +304,10 @@ input[type=checkbox].css-checkbox+label.css-label {
     animation: expand .5s;
 }
 
+.top-margin-30 {
+    margin-top: 30px;
+}
+
 .top-margin-20 {
     margin-top: 20px;
 }
@@ -349,29 +355,36 @@ input[type=checkbox].css-checkbox+label.css-label {
     display: initial;
 }
 
-#tab-container {
+#tab-container, #main-tab-container {
     width: 200%;
     display: flex;
     transition: transform .5s ease-out;
 }
 
-#tab-container.tab2 {
+#tab-container.tab2, #main-tab-container.tab2 {
     transform: translateX(-50%);
 }
 
+#tab-container.tab2 .tab1, #main-tab-container.tab2 .tab1 {
+    /* visibility: collapse; */
+    /* height: 0; */
+    overflow: hidden;
+}
+
 #tab-container.tab2 .tab1 {
-    visibility: collapse;
     height: 0;
-    overflow: hidden;
 }
 
+#tab-container:not(.tab2) .tab2, #main-tab-container:not(.tab2) .tab2 {
+    /* visibility: collapse; */
+    /* height: 0; */
+    overflow: hidden;
+}
 #tab-container:not(.tab2) .tab2 {
-    visibility: collapse;
     height: 0;
-    overflow: hidden;
 }
 
-#tab-container>div {
+#tab-container>div, #main-tab-container>div {
     flex: 1;
 }
 
@@ -390,6 +403,7 @@ input[type=checkbox].css-checkbox+label.css-label {
     /* animation: pan 31s ease-out;
     animation-direction: alternate;
     animation-iteration-count: infinite; */
+    height: 823px;
 }
 
 #videoDiv {
@@ -413,6 +427,7 @@ input[type=checkbox].css-checkbox+label.css-label {
     position: absolute;
     top: 0;
     left: 0;
+    overflow-x: hidden;
 }
 
 #videoMessage {
@@ -439,6 +454,46 @@ input[type=checkbox].css-checkbox+label.css-label {
     display: none;
 }
 
+#wake-profile-head {
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, .8);
+    font-size: 44px;
+}
+
+.legend {
+    background-color: rgba(0, 0, 0, .3);
+    padding: 14px;
+    width: 100%;
+    max-width: 350px;
+    border-radius: 0 10px 10px 0;
+    margin-top: 20px;
+}
+
+.legend>div {
+    display: inline-block;
+}
+
+.legend-item {
+    display: inline-block;
+    margin-right: 20px;
+    min-width: 120px;
+    margin-bottom: 15px;
+}
+
+.legend-color {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+#pie-chart {
+    display: table;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
 @media(max-width: 768px) {
     body {
         margin: 0;
@@ -459,5 +514,9 @@ input[type=checkbox].css-checkbox+label.css-label {
         opacity: 1;
         top: 33px;
         transform: scale(1) translateX(-50%);
+    }
+
+    #wakeUpVideo {
+        height: 100vh;
     }
 }

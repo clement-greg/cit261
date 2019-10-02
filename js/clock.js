@@ -4,8 +4,8 @@ import { DOMUpdater } from './dom-updater.js';
 import { showSnackBar } from './snack-bar.js';
 
 export class Clock {
-    alarms = [];
-    localStorage;
+    // alarms = [];
+    // localStorage;
 
     constructor() {
         this.localStorage = new LocalStorageHelper(this);
@@ -13,6 +13,15 @@ export class Clock {
 
         document.getElementById('stop-alarm').addEventListener('click', function () {
             DOMUpdater.stopAlarm();
+        });
+
+        document.getElementById('view-stats').addEventListener('click', () => {
+
+            document.getElementById('main-tab-container').classList.add('tab2');
+        });
+
+        document.getElementById('go-home-button').addEventListener('click', () => {
+            document.getElementById('main-tab-container').classList.remove('tab2');
         });
     }
 
@@ -30,14 +39,20 @@ export class Clock {
                 this.activeAlarm = null;
                 showSnackBar('Alarm Snoozed');
             }
+            if (swipeDir === 'right') {
+                document.getElementById('main-tab-container').classList.remove('tab2');
+            }
+            if (swipeDir === 'left') {
+                document.getElementById('main-tab-container').classList.add('tab2');
+            }
         });
     }
 
-    start () {
+    start() {
         let thisItem = this;
         let thisObject = this;
 
-        this.interval = setInterval( ()=> {
+        this.interval = setInterval(() => {
             DOMUpdater.updateTime(new Date());
             if (!thisObject.alarms) {
                 thisObject.alarms = [];

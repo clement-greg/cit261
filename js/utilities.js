@@ -18,6 +18,30 @@ export class Utilities {
         }
     }
 
+    static replaceStringWithObject(source, replacementObject, prototype) {
+        for (let key in replacementObject) {
+            let regEx = new RegExp('{{' + key + '}}', 'g');
+
+            if (typeof replacementObject[key] === 'function' && source.indexOf('{{' + key + '}}') > -1) {
+                source = source.replace(regEx, replacementObject[key]());
+            } else {
+                source = source.replace(regEx, replacementObject[key]);
+            }
+        }
+        for (let key of Object.getOwnPropertyNames(prototype)) {
+            let regEx = new RegExp('{{' + key + '}}', 'g');
+
+            if (typeof replacementObject[key] === 'function' && source.indexOf('{{' + key + '}}') > -1) {
+                source = source.replace(regEx, replacementObject[key]());
+            } else {
+                source = source.replace(regEx, replacementObject[key]);
+            }
+        }
+
+        return source;
+
+    }
+
     static swipeDetect(el, callback) {
         let dist = 0;
         function touchStart(e) {

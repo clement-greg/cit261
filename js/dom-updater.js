@@ -35,6 +35,7 @@ export class DOMUpdater {
         // Manipulating CSS Class Properties Using JavaScript
         document.getElementById('wakeUpVideo').style.display = 'initial';
         document.getElementById('stop-alarm').style.visibility = 'initial';
+        document.getElementById('stop-alarm').style.display = 'block';
         document.getElementById('edit-alarms').style.display = 'none';
         document.getElementById('stop-alarm').classList.add('expand');
         document.getElementById('stop-alarm').classList.remove('pulsate-button');
@@ -42,6 +43,7 @@ export class DOMUpdater {
         setTimeout(function () {
             document.getElementById('stop-alarm').classList.remove('expand');
             document.getElementById('stop-alarm').classList.add('pulsate-button');
+            
         }, 5000);
 
         wakeUpVideo.currentTime = 0;
@@ -57,6 +59,7 @@ export class DOMUpdater {
         document.getElementById('edit-alarms').style.display = 'block';
         document.getElementById('stop-alarm').classList.remove('expand');
         document.getElementById('stop-alarm').classList.remove('pulsate-button');
+        document.getElementById('stop-alarm').style.display = 'none';
         wakeUpVideo.pause();
         wakeUpSound.pause();
     }
