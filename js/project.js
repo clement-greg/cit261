@@ -230,6 +230,35 @@
     }
     WeekendAlarm.prototype = Object.create(Alarm.prototype);
 
+    function Parent(name) {
+        this.name = name;
+    }
+
+    Parent.prototype.sayName = function() {
+        console.log(this.name);
+    }
+
+    function Child(name) {
+        Parent.call(this, name + ' the child');
+    }
+    Child.prototype = Object.create(Parent.prototype);
+
+    class Parent {
+        constructor(name) {
+            this.name = name;
+        }
+
+        sayName() {
+            console.log(this.name);
+        }
+    }
+
+    class Child extends Parent {
+        constructor(name) {
+            super(name + ' the child');
+        }
+    }
+
 
 
     function Clock() {

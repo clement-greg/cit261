@@ -22,7 +22,7 @@ export class HTTP {
                     resolve(JSON.parse(req.responseText));
                 }
             };
-            req.open('GET', url, true);
+            req.open('POST', url, true);
             req.setRequestHeader('accept', 'application/json');
             req.setRequestHeader('content-type', 'application/json');
             req.send(JSON.stringify(data));

@@ -19,6 +19,7 @@ export class Statistics {
     async generateStatistics() {
         // This is just a dummy REST service that always returns the same data
         const data = await HTTP.getJSON('https://dummyservice20191001071223.azurewebsites.net/api/alarms');
+
         const donut = new Donut('pie-chart', 'legend-container');
         const metrics = [
             new Metric('1st Alarm', data.filter(i => !i.snoozeDates || i.snoozeDates.length === 0).length),

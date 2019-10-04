@@ -28,6 +28,7 @@ export class Utilities {
                 source = source.replace(regEx, replacementObject[key]);
             }
         }
+        
         for (let key of Object.getOwnPropertyNames(prototype)) {
             let regEx = new RegExp('{{' + key + '}}', 'g');
 
