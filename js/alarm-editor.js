@@ -94,8 +94,10 @@ export class AlarmEditor {
                 document.getElementById('alarm-item-container').appendChild(alarmDiv);
             }
 
+
             const thisItem = this;
             for (let button of document.getElementsByClassName('delete-alarm-button')) {
+                //button.addEventListener('click', () => alert('fires'));
                 button.addEventListener('click', function () {
                     let alarmId = this.getAttribute('data-alarmid');
                     let alarmToRemove = thisItem.clock.alarms.find(i => i.id === alarmId);

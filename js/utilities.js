@@ -87,8 +87,9 @@ export class Utilities {
 
         // HTML 5 Touch events
         touchSurface.removeEventListener('touchstart', touchStart);
-        touchSurface.addEventListener('touchstart', touchStart, true);
         touchSurface.removeEventListener('touchend', touchEnd);
+        
+        touchSurface.addEventListener('touchstart', touchStart, true);
         touchSurface.addEventListener('touchend', touchEnd, true);
     }
 }
