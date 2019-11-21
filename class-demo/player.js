@@ -12,6 +12,7 @@ export class Player {
 
     currentSprint = 0;
     currentRest = 0;
+    moveState = '';
 
     constructor(numberOfSides, index) {
         this.sides = numberOfSides;
@@ -36,12 +37,15 @@ export class Player {
             this.x += this.speed;
             this.currentSprint++;
             this.currentRest = 0;
+            this.moveState = 'moving';
         } else {
             if (this.currentRest <= this.restInterval) {
+                this.moveState = this.currentRest === 0 ? 'resting' : 'still resting';
                 this.currentRest++;
             } else {
                 this.currentSprint = 0;
                 this.currentRest = 0;
+                this.moveState = 'moving again';
             }
         }
 

@@ -6,11 +6,13 @@ import { Utilities } from '../js/utilities.js';
 import { Player } from "./player.js";
 
 class Game {
+    // Member variables
     gameContext;
     canvas;
     players = [];
     winners = [];
-
+    WIN_LINE_X = 860;
+    STOP_RUNNING_LINE = 950;
     gameInterval;
 
     constructor() {
@@ -57,16 +59,14 @@ class Game {
         this.advance();
         this.drawBoard();
         for (const player of this.players) {
-            if (player.x > 860 && this.winners.indexOf(player) === -1) {
+            if (player.x > this.WIN_LINE_X && this.winners.indexOf(player) === -1) {
                 this.winners.push(player);
                 this.printLeaderBoard();
-                if (this.winners.length === this.players.length) {
 
-                }
                 return;
             }
         }
-        if (this.players.filter(i => i.x !== 950).length === 0) {
+        if (this.players.filter(i => i.x !== this.STOP_RUNNING_LINE).length === 0) {
             clearInterval(this.gameInterval);
             document.getElementById('start-game').style.visibility = 'visible';
         }
@@ -101,17 +101,13 @@ class Game {
     printGame() {
         console.log(this);
     }
-
-
 }
 (function () {
     // JavaScript Object - Object Creation
     const game = new Game();
 
     // Wire-up button event handlers
-
     document.getElementById('start-game').addEventListener('click', () => game.startGame());
-
     document.getElementById('game-surface').addEventListener('click', () => game.printGame());
 
 })();
