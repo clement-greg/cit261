@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Raleway|Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>ES6 Class Demo</title>
+    <style>
+        * {
+            font-family: 'Raleway';
+        }
+
+        #game-surface {
+            height: 500px;
+            width: 1000px;
+            background-color: rgba(0, 0, 0, .01);
+            box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.30);
+        }
+
+        .myButton {
+            background-color: #44c767;
+            border-radius: 28px;
+            border: 1px solid #18ab29;
+            display: inline-block;
+            cursor: pointer;
+            color: #ffffff;
+            font-family: 'Raleway';
+            font-size: 28px;
+            padding: 16px 31px;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #2f6627;
+        }
+
+        #start-game-container {
+            position: absolute;
+            margin-top: 200px;
+            margin-left: 346px;
+
+        }
+
+        .myButton:hover {
+            background-color: #5cbf2a;
+        }
+
+        .myButton:active {
+            position: relative;
+            top: 1px;
+        }
+
+        #leader-board {
+            display: inline-block;
+            width: 350px;
+            height: 465px;
+            vertical-align: top;
+            margin-left: 30px;
+            box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.30);
+            padding: 20px;
+            background-color: rgba(0, 0, 0, .01);
+        }
+
+        #leader-board h2 {
+            margin: 0;
+            color: rgba(0, 0, 0, .4);
+        }
+
+        #leader-board-items li {
+            margin-bottom: 42px;
+            font-size: 27px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Shape Races</h1>
+
+    <div id="start-game-container">
+        <button class="myButton" id="start-game">Start Game</button>
+    </div>
+
+    <div style="margin-bottom: 30px;"></div>
+    <canvas height="500" width="1000" id="game-surface">
+
+    </canvas>
+
+    <div id="leader-board">
+        <div class="header">
+            <h2>Leader Board</h2>
+        </div>
+
+        <ol id="leader-board-items"></ol>
+    </div>
+
+    <script type="module" src="game.js"></script>
+
+    <script type="text/html" id="winner-item">
+        <span class="winner-item">
+                <span class="legend-color" style="background-color: {{fillStyle}}"></span> {{name}}
+            </span>
+    </script>
+
+</body>
+
+</html>
