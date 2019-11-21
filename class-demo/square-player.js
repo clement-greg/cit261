@@ -5,8 +5,7 @@ export class SquarePlayer extends Player {
         super(4,index);
         this.fillStyle = 'orange';
 
-        this.speed = 3.5;
-        this.defaultSpeed = 3.5;
+        this.defaultSpeed = 3;
         this.endurance = 50;
         this.restInterval = 10;
         this.name = 'Square';
