@@ -5,6 +5,7 @@ export class PentagonPlayer extends Player {
         super(5, index);
         this.fillStyle = 'blue';
         this.speed = 7;
+        this.defaultSpeed = 7;
         this.endurance = 15;
         this.restInterval = 27;
         this.name = 'Pentagon';

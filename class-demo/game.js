@@ -24,6 +24,7 @@ class Game {
         this.players.push(new PentagonPlayer(2));
         this.players.push(new HexagonPlayer(3));
         this.drawBoard();
+
     }
 
     drawBoard() {
@@ -92,6 +93,7 @@ class Game {
         this.gameInterval = setInterval(() => this.advanceAndDraw(), 50);
         this.winners = [];
         document.getElementById('start-game').style.visibility = 'hidden';
+        console.clear();
     }
 
     stopGame() {

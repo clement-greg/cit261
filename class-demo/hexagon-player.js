@@ -8,6 +8,7 @@ export class HexagonPlayer extends Player {
         this.fillStyle = 'purple';
 
         this.speed = 16;
+        this.defaultSpeed = 16;
         this.endurance = 5;
         this.restInterval = 30;
         this.name = 'Hexagon';

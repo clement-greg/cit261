@@ -77,6 +77,7 @@ export class Player {
         this.x = 100;
         this.currentSprint = 0;
         this.currentRest = 0;
-        // this.speed = this.defaultSpeed;
+        this.speed = this.defaultSpeed;
+        this.speedAdjustmentMade = false;
     }
 }
