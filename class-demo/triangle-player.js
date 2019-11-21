@@ -1,6 +1,7 @@
 import { Player } from "./player.js";
 
 export class TrianglePlayer extends Player {
+    speedIncrease = false;
     constructor(index) {
         super(3, index);
         this.name = 'Triangle';
@@ -13,6 +14,14 @@ export class TrianglePlayer extends Player {
             context.lineWidth = 5;
             context.setLineDash([]);
             context.stroke();
+        }
+    }
+
+    move() {
+        super.move();
+        if (this.x > 500 && !this.speedIncrease) {
+            this.speed += 2;
+            this.speedIncrease = true;
         }
     }
 }

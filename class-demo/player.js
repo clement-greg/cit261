@@ -1,6 +1,7 @@
 export class Player {
     sides;
     speed = 5;
+    defaultSpeed = 5;
     endurance = 20;
     playerIndex = 0;
     fillStyle = 'green';
@@ -13,6 +14,7 @@ export class Player {
     currentSprint = 0;
     currentRest = 0;
     moveState = '';
+    speedAdjustmentMade = false;
 
     constructor(numberOfSides, index) {
         this.sides = numberOfSides;
@@ -32,7 +34,8 @@ export class Player {
     }
 
     move() {
-        if (this.currentSprint <= this.endurance) {
+
+        if ((this.currentSprint <= this.endurance) || this.x >= 860) {
 
             this.x += this.speed;
             this.currentSprint++;
@@ -52,11 +55,28 @@ export class Player {
         if (this.x > 950) {
             this.x = 950;
         }
+        if (this.x > 500 && !this.speedAdjustmentMade) {
+            this.speedAdjustmentMade = true;
+            this.defaultSpeed = this.speed;
+            this.speed += this.getRandomSpeedAdjustment();
+            
+            if (this.speed <= 0) {
+                this.speed = 3;
+            }
+        }
+    }
+
+    getRandomSpeedAdjustment() {
+        var min = -2;
+        var max = 2;
+        var random = Math.floor(Math.random() * (+max - +min)) + +min;
+        return random;
     }
 
     reset() {
         this.x = 100;
         this.currentSprint = 0;
         this.currentRest = 0;
+        // this.speed = this.defaultSpeed;
     }
 }

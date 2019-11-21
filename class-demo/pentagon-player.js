@@ -13,7 +13,7 @@ export class PentagonPlayer extends Player {
     move() {
         super.move();
         if (this.moveState === 'resting') {
-            console.log(`${this.name} is sooooo tired`);
+            console.log(`${this.name} says, "I\'m sooooo tired. I'm at resting at position: ${this.x}"`);
         }
     }
 }
