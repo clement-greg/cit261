@@ -87,6 +87,7 @@ class Game {
     }
 
     startGame() {
+        Utilities.clearDOMChildren('leader-board-items');
         this.reset();
         this.gameInterval = setInterval(() => this.advanceAndDraw(), 50);
         this.winners = [];
