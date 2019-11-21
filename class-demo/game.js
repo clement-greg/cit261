@@ -68,7 +68,8 @@ class Game {
         this.gameContext.font = "bold 40px Saira";
         this.gameContext.fillText("START", -150, 35);
 
-        this.gameContext.fillText('FINISH', -150, 870);
+        this.gameContext.font = "bold 80px Saira";
+        this.gameContext.fillText('FINISH', -150, 880);
 
         this.gameContext.font = "bold 80px Saira";
         this.gameContext.fillStyle = 'green';
