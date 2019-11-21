@@ -24,12 +24,21 @@
         h1 {
             color: #fff;
             text-shadow: 1px 1px 2px #1B5F66;
-            font-size: 44px;
+            font-size: 58px;
             display: inline-block;
             margin: 0;
             margin-left: 20px;
             vertical-align: top;
-            margin-top: 12px;
+            font-family: 'Saira';
+            text-transform: uppercase;
+            line-height: 31px;
+            text-align: right;
+        }
+
+        .small {
+            font-size: 32px;
+            text-transform: uppercase;
+            font-style: italic;
         }
 
         #game-surface {
@@ -54,7 +63,8 @@
             animation: pulsate 1.5s ease-out !important;
             animation-direction: alternate !important;
             animation-iteration-count: infinite !important;
-            text-transform: uppercase;;
+            text-transform: uppercase;
+            ;
         }
 
         #start-game-container {
@@ -121,9 +131,10 @@
 <body>
 
     <div class="container">
-        <div>
+        <div style="margin-top: 30px">
             <img style="height: 70px;" src="../resources/images/shapes-fav-icon.png">
-            <h1>Shape Races</h1>
+            <h1>Shape
+                <br><span class="small">Races</span> </h1>
         </div>
 
         <div id="start-game-container">
