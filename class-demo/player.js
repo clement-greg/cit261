@@ -4,7 +4,7 @@ export class Player {
     defaultSpeed = 5;
     endurance = 20;
     playerIndex = 0;
-    fillStyle = 'green';
+    fillStyle = 'yellow';
     restInterval = 20;
     name = 'shape';
 

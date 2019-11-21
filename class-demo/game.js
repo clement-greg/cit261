@@ -51,6 +51,12 @@ class Game {
         this.gameContext.lineTo(120, 500);
         this.gameContext.stroke();
 
+        this.gameContext.lineWidth = 100;
+        this.gameContext.beginPath();
+        this.gameContext.moveTo(960,0);
+        this.gameContext.lineTo(960,500);
+        this.gameContext.stroke();
+
         this.gameContext.save();
         this.gameContext.fillStyle = '#fff';
         this.gameContext.translate(100, 100);
@@ -58,6 +64,9 @@ class Game {
         this.gameContext.textAlign = "center";
         this.gameContext.font = "bold 40px Saira";
         this.gameContext.fillText("START", -150, 35);
+
+        this.gameContext.fillStyle = '#fff';
+        this.gameContext.fillText('FINISH', -150,870);
         this.gameContext.restore();
 
 
