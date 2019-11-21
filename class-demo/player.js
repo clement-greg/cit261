@@ -8,7 +8,7 @@ export class Player {
     restInterval = 20;
     name = 'shape';
 
-    x = 100;
+    x = 50;
     y = 0;
 
     currentSprint = 0;
@@ -74,7 +74,7 @@ export class Player {
     }
 
     reset() {
-        this.x = 100;
+        this.x = 50;
         this.currentSprint = 0;
         this.currentRest = 0;
         this.speed = this.defaultSpeed;

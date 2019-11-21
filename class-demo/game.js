@@ -14,6 +14,7 @@ class Game {
     WIN_LINE_X = 860;
     STOP_RUNNING_LINE = 950;
     gameInterval;
+    initialDrawInterval;
 
     constructor() {
         this.canvas = document.getElementById('game-surface');
@@ -24,6 +25,8 @@ class Game {
         this.players.push(new PentagonPlayer(2));
         this.players.push(new HexagonPlayer(3));
         this.drawBoard();
+
+        this.initialDrawInterval = setInterval(() => this.drawBoard(), 50);
 
     }
 
@@ -37,10 +40,39 @@ class Game {
         this.gameContext.lineWidth = 5;
         this.gameContext.stroke();
 
+        this.drawHorizontalLaneLine(120);
+        this.drawHorizontalLaneLine(240);
+        this.drawHorizontalLaneLine(360);
+        this.drawHorizontalLaneLine(480);
+
+        this.gameContext.lineWidth = 40;
+        this.gameContext.beginPath();
+        this.gameContext.moveTo(120, 0);
+        this.gameContext.lineTo(120, 500);
+        this.gameContext.stroke();
+
+        this.gameContext.save();
+        this.gameContext.fillStyle = '#fff';
+        this.gameContext.translate(100, 100);
+        this.gameContext.rotate(-Math.PI / 2);
+        this.gameContext.textAlign = "center";
+        this.gameContext.font = "bold 40px Saira";
+        this.gameContext.fillText("START", -150, 35);
+        this.gameContext.restore();
+
 
         for (const player of this.players) {
             player.draw(this.gameContext);
         }
+    }
+
+    drawHorizontalLaneLine(y) {
+        this.gameContext.setLineDash([]);
+        this.gameContext.beginPath();
+        this.gameContext.lineWidth = .5;
+        this.gameContext.moveTo(0, y);
+        this.gameContext.lineTo(900, y);
+        this.gameContext.stroke();
     }
 
     reset() {
@@ -88,6 +120,7 @@ class Game {
     }
 
     startGame() {
+        clearInterval(this.initialDrawInterval);
         Utilities.clearDOMChildren('leader-board-items');
         this.reset();
         this.gameInterval = setInterval(() => this.advanceAndDraw(), 50);
@@ -111,5 +144,6 @@ class Game {
     // Wire-up button event handlers
     document.getElementById('start-game').addEventListener('click', () => game.startGame());
     document.getElementById('game-surface').addEventListener('click', () => game.printGame());
+
 
 })();
