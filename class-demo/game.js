@@ -40,6 +40,9 @@ class Game {
         this.gameContext.lineWidth = 5;
         this.gameContext.stroke();
 
+
+        this.drawHorizontalLaneLine(10);
+
         this.drawHorizontalLaneLine(120);
         this.drawHorizontalLaneLine(240);
         this.drawHorizontalLaneLine(360);
@@ -53,8 +56,8 @@ class Game {
 
         this.gameContext.lineWidth = 100;
         this.gameContext.beginPath();
-        this.gameContext.moveTo(960,0);
-        this.gameContext.lineTo(960,500);
+        this.gameContext.moveTo(960, 0);
+        this.gameContext.lineTo(960, 500);
         this.gameContext.stroke();
 
         this.gameContext.save();
@@ -65,8 +68,15 @@ class Game {
         this.gameContext.font = "bold 40px Saira";
         this.gameContext.fillText("START", -150, 35);
 
-        this.gameContext.fillStyle = '#fff';
-        this.gameContext.fillText('FINISH', -150,870);
+        this.gameContext.fillText('FINISH', -150, 870);
+
+        this.gameContext.font = "bold 80px Saira";
+        this.gameContext.fillStyle = 'green';
+        this.gameContext.fillText('1', 43, -30);
+        this.gameContext.fillText('2', -77, -30);
+        this.gameContext.fillText('3', -197, -30);
+        this.gameContext.fillText('4', -317, -30);
+
         this.gameContext.restore();
 
 
