@@ -3,7 +3,6 @@ import { SquarePlayer } from "./square-player.js";
 import { PentagonPlayer } from "./pentagon-player.js";
 import { HexagonPlayer } from "./hexagon-player.js";
 import { Utilities } from '../js/utilities.js';
-import { Player } from "./player.js";
 
 class Game {
     // Member variables
@@ -27,7 +26,6 @@ class Game {
         this.drawBoard();
 
         this.initialDrawInterval = setInterval(() => this.drawBoard(), 50);
-
     }
 
     drawBoard() {
@@ -128,13 +126,8 @@ class Game {
     printLeaderBoard() {
         Utilities.clearDOMChildren('leader-board-items');
         for (const winner of this.winners) {
-            let winnerItemTemplate = document.getElementById('winner-item').innerHTML;
-
-            winnerItemTemplate = Utilities.replaceStringWithObject(winnerItemTemplate, winner, Player.prototype);
-
-
             const winnerDiv = document.createElement('li');
-            winnerDiv.innerHTML = winnerItemTemplate;
+            winnerDiv.innerHTML = winner.name;
             document.getElementById('leader-board-items').appendChild(winnerDiv);
         }
     }
